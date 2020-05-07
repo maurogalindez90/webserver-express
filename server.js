@@ -1,0 +1,40 @@
+const express = require('express')
+const app = express()
+const hbs = require('hbs');
+
+
+app.use( express.static(__dirname + `/public`));
+
+// Express HBS engine
+hbs.registerPartials(__dirname + '/views/parciales');
+app.set('view engine', 'hbs');
+require('./hbs/helpers');
+
+const port = process.env.PORT || 3000;
+
+
+
+app.get('/home', (req, res) => {
+   
+                 
+  res.render('home', {
+    nombre: 'MaUrO',
+  });
+})
+
+app.get('/about', (req, res) => {
+   
+                 
+  res.render('about', {
+  });
+})
+
+app.get('/data', (req, res) => {
+    
+                 
+  res.send('hola data');
+})
+ 
+app.listen(port, () => {
+    console.log(`escuchando peticiones en el puerto ${port}`);
+})
